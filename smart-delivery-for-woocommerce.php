@@ -3,7 +3,7 @@
  * Plugin Name: ارسال هوشمند ووکامرس
  * Plugin URI: https://github.com/sahandse/smart-delivery-for-woocommerce
  * Description: انتخاب هوشمند تاریخ ارسال سفارش ووکامرس با پشتیبانی از تقویم شمسی/میلادی، تعطیلات، زمان آماده‌سازی، ساعت برش و چند رابط کاربری.
- * Version: 1.1.0
+ * Version: 1.1.1
  * Author: Sahand Rezvan
  * Author URI: https://github.com/sahandse
  * Text Domain: smart-delivery-for-woocommerce
@@ -16,7 +16,7 @@
 defined('ABSPATH') || exit;
 
 final class SDFW_Plugin {
-    const VERSION = '1.1.0';
+    const VERSION = '1.1.1';
     const OPTION  = 'sdfw_settings';
     const META    = '_sdfw_delivery_date';
 
@@ -116,6 +116,10 @@ final class SDFW_Plugin {
     }
 
     public function admin_menu() {
+        if (function_exists('s_store_register_submenu')) {
+            s_store_register_submenu('smart-delivery-for-woocommerce', 'ارسال هوشمند ووکامرس', [$this, 'settings_page'], 'manage_woocommerce', 'ارسال هوشمند ووکامرس');
+            return;
+        }
         add_submenu_page(
             'woocommerce',
             'ارسال هوشمند ووکامرس',
