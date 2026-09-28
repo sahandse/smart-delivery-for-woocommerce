@@ -128,7 +128,7 @@ class SDW_Checkout {
                 echo '<span class="sdw-date-card__top"><b>'.esc_html(SDW_Delivery::weekday((int)$date->format('w'))).'</b>'.($isSoon?'<em>'.esc_html($i===0?SDW_Core::text('اولین ارسال','Earliest'):SDW_Core::text('سریع','Fast')).'</em>':'').'</span>';
                 echo '<span class="sdw-date-card__date">'.esc_html(SDW_Delivery::formatted_date($date)).'</span>';
                 if('yes'===$o['show_occasion']&&$occasion) echo '<small class="sdw-date-card__occasion" title="'.esc_attr($occasion).'">'.esc_html($occasion).'</small>';
-                else echo '<small class="sdw-date-card__occasion sdw-date-card__occasion--muted">'.esc_html(SDW_Core::text('روز کاری','Working day')).'</small>';
+                else echo '<small class="sdw-date-card__occasion sdw-date-card__occasion--muted">'.esc_html(SDW_Core::text('قابل ارسال','Available')).'</small>';
                 echo '<i class="sdw-date-card__check">✓</i></span></label>';
             }
             echo '</div>';
