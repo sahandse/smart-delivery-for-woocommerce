@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Smart Delivery for WooCommerce
  * Description: Smart WooCommerce delivery-date scheduling with Persian/English UI, Jalali/Gregorian calendars, holidays and configurable checkout layouts.
- * Version: 1.4.1
+ * Version: 1.4.2
  * Author: Sahand Rezvan
  * Text Domain: smart-delivery-for-woocommerce
  * Domain Path: /languages
@@ -13,7 +13,7 @@
  */
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-define( 'SDW_VERSION', '1.4.1' );
+define( 'SDW_VERSION', '1.4.2' );
 define( 'SDW_FILE', __FILE__ );
 define( 'SDW_DIR', plugin_dir_path( __FILE__ ) );
 define( 'SDW_URL', plugin_dir_url( __FILE__ ) );
