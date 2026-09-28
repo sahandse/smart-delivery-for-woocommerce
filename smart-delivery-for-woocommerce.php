@@ -27,8 +27,8 @@ require_once SDW_DIR . 'public/class-sdw-checkout.php';
 
 register_activation_hook( __FILE__, array( 'SDW_Core', 'activate' ) );
 add_action( 'before_woocommerce_init', function() {
-    if ( class_exists( '\\Automattic\\WooCommerce\\Utilities\\FeaturesUtil' ) ) {
-        \\Automattic\\WooCommerce\\Utilities\\FeaturesUtil::declare_compatibility( 'custom_order_tables', __FILE__, true );
+    if ( class_exists( '\Automattic\WooCommerce\Utilities\FeaturesUtil' ) ) {
+        \Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility( 'custom_order_tables', __FILE__, true );
     }
 } );
 add_action( 'plugins_loaded', function() { SDW_Core::instance(); } );
