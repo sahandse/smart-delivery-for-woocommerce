@@ -25,6 +25,34 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          token: ${{ github.token }}
+
+      - name: Apply 1.4.3 release normalization
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          main = Path('smart-delivery-for-woocommerce.php')
+          text = main.read_text(encoding='utf-8')
+          text = text.replace('Version: 1.4.2', 'Version: 1.4.3')
+          text = text.replace("define( 'SDW_VERSION', '1.4.2' );", "define( 'SDW_VERSION', '1.4.3' );")
+          main.write_text(text, encoding='utf-8')
+
+          checkout = Path('public/class-sdw-checkout.php')
+          text = checkout.read_text(encoding='utf-8')
+          text = text.replace("SDW_Core::text('روز کاری','Working day')", "SDW_Core::text('قابل ارسال','Available')")
+          checkout.write_text(text, encoding='utf-8')
+          PY
+
+      - name: Commit normalized release files
+        if: github.ref == 'refs/heads/main'
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add smart-delivery-for-woocommerce.php public/class-sdw-checkout.php
+          git diff --cached --quiet || git commit -m "release: Smart Delivery 1.4.3"
+          git push
 
       - name: Prepare plugin
         run: |
@@ -43,7 +71,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: smart-delivery-for-woocommerce-1.4.2
+          name: smart-delivery-for-woocommerce-1.4.3
           path: build/smart-delivery-for-woocommerce.zip
           if-no-files-found: error
 
