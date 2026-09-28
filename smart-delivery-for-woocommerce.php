@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Smart Delivery for WooCommerce
  * Description: Smart WooCommerce delivery-date scheduling with Persian/English UI, Jalali/Gregorian calendars, holidays and configurable checkout layouts.
- * Version: 1.4.0
+ * Version: 1.4.1
  * Author: Sahand Rezvan
  * Text Domain: smart-delivery-for-woocommerce
  * Domain Path: /languages
@@ -13,7 +13,7 @@
  */
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-define( 'SDW_VERSION', '1.4.0' );
+define( 'SDW_VERSION', '1.4.1' );
 define( 'SDW_FILE', __FILE__ );
 define( 'SDW_DIR', plugin_dir_path( __FILE__ ) );
 define( 'SDW_URL', plugin_dir_url( __FILE__ ) );
@@ -27,8 +27,8 @@ require_once SDW_DIR . 'public/class-sdw-checkout.php';
 
 register_activation_hook( __FILE__, array( 'SDW_Core', 'activate' ) );
 add_action( 'before_woocommerce_init', function() {
-    if ( class_exists( '\Automattic\WooCommerce\Utilities\FeaturesUtil' ) ) {
-        \Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility( 'custom_order_tables', __FILE__, true );
+    if ( class_exists( '\\Automattic\\WooCommerce\\Utilities\\FeaturesUtil' ) ) {
+        \\Automattic\\WooCommerce\\Utilities\\FeaturesUtil::declare_compatibility( 'custom_order_tables', __FILE__, true );
     }
 } );
 add_action( 'plugins_loaded', function() { SDW_Core::instance(); } );
